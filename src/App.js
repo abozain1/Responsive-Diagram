@@ -32,14 +32,9 @@ export default function App() {
   const [show, setshow] = useState(false);
   const [modal, setmodal] = useState(false);
   const [parent, setparent] = useState("");
-  // const [small, setsmall] = useState(false);
-  // const [meduim, setmeduim] = useState(false);
-  // const [large, setlarge] = useState(false);
-  // const [xlarge, setxlarge] = useState(false);
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 
-  // console.log(schema);
-  const deleteNodeFromSchema = (id) => {
+  function deleteNodeFromSchema(id) {
     let holder = [];
     for (let a = 0; a < schema.nodes.length; a++) {
       // console.log("d");
@@ -66,10 +61,13 @@ export default function App() {
         }
       }
     }
-
     for (let c = 0; c < schema.nodes.length; c++) {
       for (let d = 0; d < schema.nodes.length; d++) {
-        if (schema.nodes[d] && holder[c] && schema.nodes[d].id === holder[c]) {
+        if (
+          schema.nodes[d] &&
+          holder[c] &&
+          schema.nodes[d].id === holder[c]
+        ) {
           schema.nodes.splice(d, 1);
           holder.splice(c, 1);
           d = -1;
@@ -77,11 +75,21 @@ export default function App() {
         }
       }
     }
-    if (id === "node-1") {
+
+    let demoNode = {
+      id: "demo",
+      content: "demo",
+      coordinates: [10, 10],
+      render: Comp,
+    };
+    addNode(demoNode);
+
+    if (id === "master-1") {
       setshow(false);
-      schema.nodes.splice(0, 1);
+      schema.nodes.splice(0);
     }
-  };
+    
+  }
 
   const addNewNode = (content, id) => {
     setshow(true);
@@ -124,6 +132,14 @@ export default function App() {
     addNewNode(content, parent);
   };
 
+  for (let d = 0; d < schema.nodes.length; d++) {
+    if (schema.nodes[d] && schema.nodes[d].id === "demo") {
+      schema.nodes.splice(d, 1);
+
+      d = -1;
+    }
+  }
+
   return (
     <Fragment>
       {modal && (
@@ -142,7 +158,7 @@ export default function App() {
       )}
       <div className={classes.dia}>
         {!show && (
-          <button onClick={() => addNewNode("Master", "node-1")}>
+          <button onClick={() => addNewNode("Master", "master-1")}>
             Add new node
           </button>
         )}
