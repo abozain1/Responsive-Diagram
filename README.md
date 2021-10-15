@@ -6,4 +6,4 @@ RESPOSIVE DIAGRAM APP
 
 - the data dont refresh automaticly when removing the lag comes from the library itself ,, i tried the same logic on another lib and it works,,, but it updates the data on any change
 
-
+- latency fixed.....now it refresh automaticly.
