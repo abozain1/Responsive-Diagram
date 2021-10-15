@@ -1,25 +1,25 @@
 import React, { Fragment, useState } from "react";
 import "beautiful-react-diagrams/styles.css";
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import classes from "./App.module.css";
+import "./App.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import Modal from "./Modal";
 
 const Comp = ({ id, content, data }) => (
-  <div className={classes.compmain}>
-    <div className={classes.iconholder}>
+  <div className='compmain'>
+    <div className='iconholder'>
       <AiOutlineMinusCircle
         onClick={() => data.remove(id)}
-        className={classes.cross}
+        className='cross'
       />
       <AiOutlinePlusCircle
         onClick={() => data.add(id)}
-        className={classes.plus}
+        className='plus'
       />
     </div>
 
-    <p className={classes.p}>{content}</p>
+    <p className='p'>{content}</p>
   </div>
 );
 
@@ -144,26 +144,26 @@ export default function App() {
     <Fragment>
       {modal && (
         <Modal>
-          <p className={classes.category} onClick={() => choose("Alpha")}>
+          <p className='category' onClick={() => choose("Alpha")}>
             Alpha
           </p>
-          <p className={classes.category} onClick={() => choose("Beta")}>
+          <p className='category' onClick={() => choose("Beta")}>
             {" "}
             Beta
           </p>
-          <p className={classes.category} onClick={() => choose("Sigma")}>
+          <p className='category' onClick={() => choose("Sigma")}>
             Sigma
           </p>
         </Modal>
       )}
-      <div className={classes.dia}>
+      <div className='dia'>
         {!show && (
-          <button onClick={() => addNewNode("Master", "master-1")}>
-            Add new node
+          <button className='btn' onClick={() => addNewNode("Master", "master-1")}>
+            Add node
           </button>
         )}
 
-        {show && <Diagram schema={schema} onChange={onChange} />}
+        {show && <Diagram className='digo' schema={schema} onChange={onChange} />}
       </div>
     </Fragment>
   );
