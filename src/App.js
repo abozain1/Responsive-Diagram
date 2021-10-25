@@ -32,7 +32,7 @@ export default function App() {
   const [show, setshow] = useState(false);
   const [modal, setmodal] = useState(false);
   const [parent, setparent] = useState("");
-  const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
+  const [schema, { onChange, addNode }] = useSchema(initialSchema);
 
   function deleteNodeFromSchema(id) {
     let holder = [];
