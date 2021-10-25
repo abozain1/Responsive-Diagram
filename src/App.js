@@ -28,7 +28,7 @@ const initialSchema = createSchema({
   links: [],
 });
 
-export default function App() {
+export default function App(props) {
   const [show, setshow] = useState(false);
   const [modal, setmodal] = useState(false);
   const [parent, setparent] = useState("");
@@ -139,11 +139,11 @@ export default function App() {
       d = -1;
     }
   }
-
+  
   return (
     <Fragment>
       {modal && (
-        <Modal>
+        <Modal onclick={()=>setmodal(false)} >
           <p className='category' onClick={() => choose("Alpha")}>
             Alpha
           </p>
@@ -163,7 +163,11 @@ export default function App() {
           </button>
         )}
 
-        {show && <Diagram className='digo' schema={schema} onChange={onChange} />}
+        {show &&
+        
+        
+        <Diagram className='digo' schema={schema} onChange={onChange} />
+        }
       </div>
     </Fragment>
   );
